@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-brand: #08005e;
+  --color-text: #010022;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+ul {
+  list-style-type: none;
+}
+
+img.icon {
+  background-color: transparent;
+}
+
+button.icon-button {
+  border: 0;
+  background-color: transparent;
+}
