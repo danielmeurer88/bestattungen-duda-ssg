@@ -1,3 +1,32 @@
+<header>
 
-<main>
-</main>
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/start" routerLinkActive="active-link">
+          <app-svg-icon type="home"></app-svg-icon>
+          Start
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/datenschutz" routerLinkActive="active-link">
+          <app-svg-icon type="shield"></app-svg-icon>
+          Datenschutz
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/impressum" routerLinkActive="active-link">
+          <app-svg-icon type="company"></app-svg-icon>
+          Impressum
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+<router-outlet />
+<footer>
+
+</footer>

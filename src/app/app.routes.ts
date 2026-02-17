@@ -1,11 +1,25 @@
 import { Routes } from '@angular/router';
-import { Page } from './components/page/page';
+import { Start } from './components/start/start';
+import { Datenschutz } from './components/datenschutz/datenschutz';
+import { Impressum } from './components/impressum/impressum';
 
 export const routes: Routes = [
   {
-    component: Page,
     path: '',
-    providers: []
+    redirectTo: 'start',
+    pathMatch: 'full'
+  },
+  {
+    component: Start,
+    path: 'start',
+  },
+  {
+    component: Datenschutz,
+    path: 'datenschutz',
+  },
+  {
+    component: Impressum,
+    path: 'impressum',
   },
   {
     path: '**',

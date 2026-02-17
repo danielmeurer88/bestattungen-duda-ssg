@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:network": "npm run start -- --host 0.0.0.0",
     "build": "ng build",
+    "prod": "ng build --configuration production --base-href \"../\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:duda-ssg": "node dist/duda-ssg/server/server.mjs"
@@ -22,7 +24,6 @@
     ]
   },
   "private": true,
-  "packageManager": "npm@10.9.3",
   "dependencies": {
     "@angular/common": "^21.0.0",
     "@angular/compiler": "^21.0.0",

@@ -1,0 +1,17 @@
+import { Component, inject, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-start',
+  imports: [],
+  templateUrl: './start.html',
+  styleUrl: './start.scss',
+})
+export class Start implements OnInit {
+
+  
+
+  ngOnInit(): void {
+    console.log('--------');
+  }
+
+}
