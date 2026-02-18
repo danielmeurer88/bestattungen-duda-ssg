@@ -6,12 +6,8 @@ import { Component, input, OnInit } from '@angular/core';
   templateUrl: './svg-icon.html',
   styleUrl: './svg-icon.scss',
 })
-export class SvgIcon implements OnInit {
+export class SvgIcon {
 
   type  = input.required<string>();
-
-  ngOnInit(): void {
-    console.log('---- ', this.type());
-  }
 
 }

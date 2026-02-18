@@ -6,12 +6,5 @@ import { Component, inject, OnInit } from '@angular/core';
   templateUrl: './start.html',
   styleUrl: './start.scss',
 })
-export class Start implements OnInit {
-
-  
-
-  ngOnInit(): void {
-    console.log('--------');
-  }
-
+export class Start {
 }
