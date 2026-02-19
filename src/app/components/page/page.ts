@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { SvgIcon } from '../../shared/svg-icon/svg-icon';
+import { RouterOutlet } from '@angular/router';
+import { PageNav } from '../../shared/page-nav/page-nav';
+
 
 @Component({
   selector: 'app-page',
   imports: [
     RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    SvgIcon
+    PageNav
   ],
   templateUrl: './page.html',
   styleUrl: './page.scss',

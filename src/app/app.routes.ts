@@ -7,19 +7,28 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'start',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     component: Start,
     path: 'start',
+    data: {
+      routeName: 'Startseite'
+    }
   },
   {
     component: Datenschutz,
     path: 'datenschutz',
+    data: {
+      routeName: 'Datenschutz'
+    }
   },
   {
     component: Impressum,
     path: 'impressum',
+    data: {
+      routeName: 'Impressum'
+    }
   },
   {
     path: '**',
