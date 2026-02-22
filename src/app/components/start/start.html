@@ -54,9 +54,20 @@
 
 <section class="gallery">
 
-  <div class="carousel carousel--scroll-buttons carousel--scroll-markers carousel--unsnapped-inert">
-    https://chrome.dev/carousel/horizontal/gallery/
-  </div>
+  <app-carousel [images]="[
+    {
+      src: 'public/img/dia/beerdigung_1.jpg',
+      alt: 'Beerdigung in Guntersblum',
+      width: 720,
+      height: 480
+    },
+    {
+      src: 'public/img/dia/sarg_1.jpg',
+      alt: 'Sarg 1',
+      width: 720,
+      height: 480
+    },
+  ]"></app-carousel>
 
 </section>
 

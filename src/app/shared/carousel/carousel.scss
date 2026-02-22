@@ -1,0 +1,71 @@
+
+
+:host {
+
+  --that-max-height: 480px;
+
+  container-name: --app-carousel;
+  container-type: inline-size;
+  display: flex;
+  width: 100%;
+
+  .carousel-container {
+
+    @container --app-carousel (width <= 680px) {
+      --that-max-height: 440px;
+    }
+
+    @container --app-carousel (width <= 640px) {
+      --that-max-height: 400px;
+    }
+
+    @container --app-carousel (width <= 600px) {
+      --that-max-height: 360px;
+    }
+
+    @container --app-carousel (width <= 540px) {
+      --that-max-height: 320px;
+    }
+
+    width: 100%;
+
+    .carousel-slides {
+      display: flex;;
+      width: 100%;
+      height: 100%;
+      overflow-x: auto;
+
+      scroll-snap-type: x mandatory;
+
+      .carousel-slide {
+
+        width: 100cqw;
+        min-width:  100cqw;
+        max-width:  100cqw;
+
+        scroll-snap-align: start;
+
+        img {
+          width: 100cqw;
+          min-width:  100cqw;
+          max-width:  100cqw;
+
+          object-fit: contain;
+
+          height: var(--that-max-height);
+        }
+
+        background-color: black;
+        display: flex;
+        justify-content: center;
+
+      }
+
+    }
+
+  }
+
+}
+
+
+

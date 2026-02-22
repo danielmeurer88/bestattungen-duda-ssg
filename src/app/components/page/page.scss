@@ -5,5 +5,60 @@
   container-name: app-page;
   container-type: inline-size;
 
-  nav {}
+
+  header {
+
+    background-color: var(--color-brand);
+
+    .nav-container {
+      // page-object -> should simulate din a4
+      max-width: var(--page-width);
+      padding-left: var(--page-padding);
+      padding-right: var(--page-padding);
+      display: flex;
+      width: 100%;
+      justify-self: center;
+      // ---------
+
+      padding-top: var(--page-padding);
+      padding-bottom: var(--page-padding);
+    }
+  }
+
+  ::ng-deep router-outlet + * {
+    // page-object -> should simulate din a4
+    max-width: var(--page-width);
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+    display: flex;
+    width: 100%;
+    justify-self: center;
+    // ---------
+
+    padding-top: var(--page-padding);
+    padding-bottom: var(--page-padding);
+  }
+
+
+  footer {
+
+    background-color: var(--color-brand);
+
+    .footer-container {
+      // page-object -> should simulate din a4
+      max-width: var(--page-width);
+      padding-left: var(--page-padding);
+      padding-right: var(--page-padding);
+      display: flex;
+      width: 100%;
+      justify-self: center;
+      // ---------
+
+      padding-top: var(--page-padding);
+      padding-bottom: var(--page-padding);
+
+      min-height: 24px;
+    }
+  }
+
 }
