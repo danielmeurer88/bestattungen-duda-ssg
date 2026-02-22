@@ -10,6 +10,8 @@
   width: 100%;
 
   scroll-behavior: smooth;
+  scrollbar-color: rgb(105, 105, 105) rgb(37, 0, 0);
+  scrollbar-width: thin;
 
   .carousel-container {
 
@@ -64,38 +66,13 @@
 
       }
 
-      // scroll-bar styling
-      .carousel-slides {
-        scrollbar-width: thin;
-        scrollbar-color: #4a90e2 #f1f1f1;
-
-        &::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 6px;
-            margin: 2px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background: #4a90e2;
-            border-radius: 6px;
-            border: 2px solid #f1f1f1;
-        }
-
-        &::-webkit-scrollbar-thumb:hover {
-            background: #357abd;
-            border-color: #e0e0e0;
-        }
-
-      }
-
     }
 
     .slide-button {
+
+      --norm-color: black;
+      --stroke-color: rgba(255, 255, 255, 0.4);
+      --stroke-hover-color: rgba(255, 255, 255, 0.8);
 
       --size: clamp(16px, 16vw, 60px);
       width: var(--size);
@@ -103,8 +80,21 @@
 
       position: absolute;
       top: calc(50% - (var(--size) / 2));
-      border-radius: 50%;
+
       background-color: transparent;
+
+      color: var(--norm-color);
+      -webkit-text-stroke: 0.12rem var(--stroke-color);
+      text-stroke: 0.12rem var(--stroke-color);
+
+      border: 0.1rem solid var(--stroke-color);
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover, &:focus-visible {
+        --stroke-color: var(--stroke-hover-color);
+        background-color: rgba(255, 255, 255, 0.45);
+      }
 
       &.prev-slide-button {
         left: 5px;
