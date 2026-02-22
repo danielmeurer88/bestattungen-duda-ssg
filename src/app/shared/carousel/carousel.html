@@ -1,6 +1,6 @@
 <div class="carousel-container">
 
-  <div class="carousel-slides">
+  <div class="carousel-slides" #carouselSlides>
 
     @for (image of images; track $index; let i = $index) {
 
@@ -8,11 +8,22 @@
         <img
           [src]="image.src"
           [alt]="image.alt"
+          [loading]="i === 0 ? 'eager' : 'lazy'"
         />
       </div>
 
     }
 
   </div>
+
+  <button
+    class="slide-button prev-slide-button"
+    (click)="prevSlide(carouselSlides)"
+  >&#10094;</button>
+
+  <button
+    class="slide-button next-slide-button"
+    (click)="nextSlide(carouselSlides)"
+  >&#10095;</button>
 
 </div>

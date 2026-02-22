@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -15,36 +15,45 @@ export class Carousel {
   @Input() images: Array<{
     src: string;
     alt?: string;
-    width?: number;
-    height?: number;
-    thumbnailSrc?: string;
-    thumbnailWidth?: number;
-    thumbnailHeight?: number;
   }> = [];
 
   currentIndex$ = new BehaviorSubject<number>(0);
 
-  private updateCarouselPosition() {
+  prevSlide(slidesEl: HTMLDivElement) {
+    console.log('prevSlide', slidesEl);
 
-  }
+    let scrollTarget = slidesEl.scrollWidth;
+    const slideLength = slidesEl.clientWidth;
 
-  goToSlide(index: number) {
-    this.currentIndex$.next(index);
-    this.updateCarouselPosition();
-  }
+    // is scroll End reached?
+    // true if current scroll indicator's position is 0
+    const scrollStartReached = slidesEl.scrollLeft - 1 <= 0;
 
-  nextSlide() {
-    if (this.currentIndex$.value < this.images.length - 1) {
-      this.currentIndex$.next(this.currentIndex$.value + 1);
-      this.updateCarouselPosition();
+    if (!scrollStartReached) {
+      // target
+      scrollTarget = slidesEl.scrollLeft - slideLength;
     }
+
+    slidesEl.scrollTo({behavior: 'smooth', left: scrollTarget});
   }
 
-  prevSlide() {
-    if (this.currentIndex$.value > 0) {
-      this.currentIndex$.next(this.currentIndex$.value - 1);
-      this.updateCarouselPosition();
+  nextSlide(slidesEl: HTMLDivElement) {
+    console.log('nextSlide', slidesEl);
+
+    let scrollTarget = 0;
+    const slideLength = slidesEl.clientWidth;
+
+    // is scroll End reached?
+    // true if current scroll indicator's position + the length of one slide is equal or taller then the whole scroll width
+    const scrollEndReached = Math.ceil(slidesEl.scrollLeft + slideLength + 1) >= Math.ceil(slidesEl.scrollWidth);
+
+    if (!scrollEndReached) {
+      // target
+      scrollTarget = slidesEl.scrollLeft + slideLength;
     }
+
+    slidesEl.scrollTo({behavior: 'smooth', left: scrollTarget});
+
   }
 
 }

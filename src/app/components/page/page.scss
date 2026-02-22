@@ -25,20 +25,6 @@
     }
   }
 
-  ::ng-deep router-outlet + * {
-    // page-object -> should simulate din a4
-    max-width: var(--page-width);
-    padding-left: var(--page-padding);
-    padding-right: var(--page-padding);
-    display: flex;
-    width: 100%;
-    justify-self: center;
-    // ---------
-
-    padding-top: var(--page-padding);
-    padding-bottom: var(--page-padding);
-  }
-
 
   footer {
 

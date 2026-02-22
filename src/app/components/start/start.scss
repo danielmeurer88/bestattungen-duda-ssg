@@ -2,12 +2,34 @@
 
   display: flex;
   flex-direction: column;
-  gap: 1ch;
 
   container-type: inline-size;
   container-name: app-start;
 
+  color: white;
+
+  ::ng-deep svg {
+    fill: white;
+  }
+
+  section {
+    width: 100%;
+    padding: var(--page-padding);
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    & > * {
+      max-width: var(--page-width);
+    }
+  }
+
   .intro {
+
+    background-image: url('../../../../public/img/bck/candle.jpg');
 
     h1 {
       display: grid;
@@ -44,6 +66,18 @@
 
     }
 
+  }
+
+  .services {
+    background-image: url('../../../../public/img/bck/hand-shake.jpg');
+  }
+
+  .gallery {
+    background-image: url('../../../../public/img/bck/memories.jpg');
+  }
+
+  .contact {
+    background-image: url('../../../../public/img/bck/map.jpg');
   }
 
 }
