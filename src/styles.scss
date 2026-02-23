@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../public/fonts/font.css';
+
 :root {
   --color-brand: #790b0b;
   --color-text: #1e1c1c;
@@ -23,6 +25,14 @@ body {
 
 ul {
   list-style-type: none;
+}
+
+a {
+  color: var(--color-gold);
+  transition: color 200ms ease-in-out;
+  &:hover, &:focus-visible {
+    color: oklab(from var(--color-gold) calc(l + 0.1) a b)
+  }
 }
 
 img.icon {
