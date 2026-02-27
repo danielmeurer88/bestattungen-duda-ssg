@@ -16,6 +16,7 @@
 
   section {
     width: 100%;
+    min-height: 100vh;
 
     padding-top: 10ch;
     padding-right: var(--page-padding);
@@ -31,6 +32,10 @@
 
     & > * {
       max-width: var(--page-width);
+    }
+
+    .weight {
+      font-weight: bold;
     }
   }
 
@@ -151,6 +156,38 @@
   .services {
     background-image: url('../../../../public/img/bck/hand-shake.jpg');
 
+    min-height: 50vh; // overriding 100vh
+
+    display: flex;
+    flex-direction: column;
+    gap: 10ch;
+    justify-content: space-around;
+
+    h2 {
+      font-size: calc(0.55 * var(--logo-height));
+    }
+
+    ul {
+      font-size: calc(0.45 * var(--logo-height));
+
+      display: flex;
+      flex-direction: column;
+      gap: 2ch;
+
+    }
+
+
+
+    p {
+      font-size: calc(0.45 * var(--logo-height));
+    }
+
+  }
+
+  .new-variations {
+    background-image: url('../../../../public/img/bck/forest_river.jpg');
+    padding-top: 10ch;
+    padding-bottom: 10ch;
   }
 
   .gallery {
@@ -161,7 +198,8 @@
 
   .contact {
     background-image: url('../../../../public/img/bck/map.jpg');
-    padding: 15ch 0;
+    padding-top: 15ch;
+    padding-bottom: 15ch;
   }
 
 }
