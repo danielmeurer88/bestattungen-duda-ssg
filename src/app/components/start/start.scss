@@ -6,17 +6,28 @@
   container-type: inline-size;
   container-name: app-start;
 
-  color: white;
-
   ::ng-deep svg {
     fill: white;
   }
 
-  --logo-height: clamp(28px, 12vw, 5rem);
+  ul, ol {
+    padding-left: 1em;
+
+    max-width: 32ch;
+
+    list-style-type: disc;
+    white-space: normal;
+    line-break: strict;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  --logo-height: clamp(28px, 12vw, 6rem);
 
   section {
     width: 100%;
     min-height: 100vh;
+    background-position: center;
 
     padding-top: 10ch;
     padding-right: var(--page-padding);
@@ -34,6 +45,10 @@
       max-width: var(--page-width);
     }
 
+    & > :where(h2, p) {
+      text-align: center;
+    }
+
     .weight {
       font-weight: bold;
     }
@@ -47,7 +62,6 @@
     padding: 10ch 0;
 
     background-image: url('../../../../public/img/bck/candle.jpg');
-    --logo-height: clamp(28px, 12vw, 5rem);
     --map-zoom: 2.6;
 
     @container app-start (width <= 500px) {
@@ -70,28 +84,40 @@
       font-size: var(--logo-height);
       font-family: WrexhamScript, ChopinScript, serif;
 
-      .big {
-        display: flex;
-      }
-      .normal { display: none; }
-      .small { display: none; }
-
-      .flex {
-        display: flex;
-      }
-
       ::ng-deep .logo-svg {
         width: fit-content;
         height: var(--logo-height);
       }
 
-      @container app-start (width <= 815px) {
+      .big {
+        display: flex;
+      }
+      .normal {
+        display: none;
+
+        ::ng-deep .logo-svg {
+          zoom: 125%;
+        }
+        .name {
+          font-size: 1.25em;
+        }
+      }
+      .small { display: none; }
+
+      .flex {
+        display: flex;
+        align-items: center;
+      }
+
+
+
+      @container app-start (width <= 928px) {
         .big { display: none; }
         .normal { display: block; }
         .small { display: none; }
       }
 
-      @container app-start (width <= 640px) {
+      @container app-start (width <= 520px) {
         .big { display: none; }
         .normal { display: none; }
         .small {
@@ -110,14 +136,14 @@
 
     q {
       display: block;
-      font-size: calc(0.55 * var(--logo-height));
+      font-size: calc(0.5 * var(--logo-height));
 
       align-items: center;
       text-align: center;
     }
 
     .address-container {
-      font-size: calc(0.45 * var(--logo-height));
+      font-size: calc(0.42 * var(--logo-height));
       display: flex;
       gap: 1ch;
       align-items: center;
@@ -135,7 +161,7 @@
       align-items: center;
       gap: 1ch;
 
-      font-size: calc(0.55 * var(--logo-height));
+      font-size: calc(0.5 * var(--logo-height));
 
       text-align: center;
       text-wrap-style: pretty;
@@ -170,13 +196,13 @@
     ul {
       font-size: calc(0.45 * var(--logo-height));
 
+      max-width: 32ch;
+
       display: flex;
       flex-direction: column;
       gap: 2ch;
 
     }
-
-
 
     p {
       font-size: calc(0.45 * var(--logo-height));
@@ -188,6 +214,27 @@
     background-image: url('../../../../public/img/bck/forest_river.jpg');
     padding-top: 10ch;
     padding-bottom: 10ch;
+    gap: 4ch;
+
+    h2 {
+      font-size: calc(0.55 * var(--logo-height));
+    }
+
+    ul {
+      font-size: calc(0.45 * var(--logo-height));
+
+      max-width: 32ch;
+
+      display: flex;
+      flex-direction: column;
+      gap: 2ch;
+
+    }
+
+    p {
+      font-size: calc(0.45 * var(--logo-height));
+    }
+
   }
 
   .gallery {
@@ -200,6 +247,25 @@
     background-image: url('../../../../public/img/bck/map.jpg');
     padding-top: 15ch;
     padding-bottom: 15ch;
+
+    gap: 4ch;
+
+    h2 {
+      font-size: calc(0.55 * var(--logo-height));
+    }
+
+    address {
+      font-size: calc(0.45 * var(--logo-height));
+    }
+
+    .reason {
+      font-size: calc(0.45 * var(--logo-height));
+    }
+
+    .contact-data {
+      font-size: calc(0.45 * var(--logo-height));
+    }
+
   }
 
 }

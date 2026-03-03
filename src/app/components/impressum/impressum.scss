@@ -1,0 +1,16 @@
+:host {
+
+  display: block;
+  background-image: url('../../../../public/img/bck/impressum.jpg');
+  background-position: center;
+
+  section {
+    max-width: var(--page-width);
+    margin: 6ch auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2ch;
+  }
+
+}

@@ -29,6 +29,11 @@
                 "glob": "**/*",
                 "input": "public",
                 "output": "public"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "public",
+                "output": "./"
               }
             ],
             "styles": [

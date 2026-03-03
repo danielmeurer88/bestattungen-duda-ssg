@@ -3,7 +3,7 @@
 
 :root {
   --color-brand: #790b0b;
-  --color-text: #1e1c1c;
+  --color-text: #fff8f8;
   --color-gold: #d3a21a;
 
   --page-width: 960px;
@@ -24,11 +24,7 @@ body {
 }
 
 ul, ol {
-  padding-left: 1em;
-  white-space: normal;
-  line-break: strict;
-  word-wrap: break-word;
-  hyphens: auto;
+  list-style-type: none;
 }
 
 a {
@@ -46,4 +42,8 @@ img.icon {
 button.icon-button {
   border: 0;
   background-color: transparent;
+}
+
+address {
+  font-style: normal;
 }
