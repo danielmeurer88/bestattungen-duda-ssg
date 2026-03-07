@@ -148,13 +148,35 @@
     Deshalb zur jeder Zeit für Sie erreichbar:
   </div>
 
-  <p class="contact-data">
-    Telefon: <a href="tel:+4962498450">06249 - 8450</a>
-    <br>
-    Fax: 06249 - 8757
-    <br>
-    E-Mail: <a href="mailto:bestattungen-duda@online.de">bestattungen-duda@online.de</a>
-  </p>
+  <div class="contact-data">
+
+    <ng-template #phoneTemplate>
+      <div style="display: flex; gap: 2ch; margin: 4ch;">
+        <a href="tel:+4962498450"><app-svg-icon type="external"></app-svg-icon> </a>
+        <button><app-svg-icon type="copy"></app-svg-icon> </button>
+      </div>
+    </ng-template>
+
+    <div tabindex="0" utilTooltip="x" [utilTooltipTemplate]="phoneTemplate" [utilTooltipSimulatePopup]="true">
+      Telefon: <span role="button" class="link-alike">06249 - 8450</span>
+    </div>
+
+    <div>
+      Fax: 06249 - 8757
+    </div>
+
+    <ng-template #mailTemplate>
+      <div style="display: flex; gap: 2ch; margin: 4ch;">
+        <a href="mailto:bestattungen-duda@online.de"><app-svg-icon type="external"></app-svg-icon></a>
+        <button><app-svg-icon type="copy"></app-svg-icon> </button>
+      </div>
+    </ng-template>
+
+    <div tabindex="0" utilTooltip="x" [utilTooltipTemplate]="mailTemplate" [utilTooltipSimulatePopup]="true">
+      E-Mail: <span role="button" class="link-alike">bestattungen-duda@online.de</span>
+    </div>
+
+  </div>
 
 </section>
 

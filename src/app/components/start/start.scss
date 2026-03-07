@@ -109,8 +109,6 @@
         align-items: center;
       }
 
-
-
       @container app-start (width <= 928px) {
         .big { display: none; }
         .normal { display: block; }

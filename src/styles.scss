@@ -27,9 +27,10 @@ ul, ol {
   list-style-type: none;
 }
 
-a {
+a, .link-alike {
   color: var(--color-gold);
   transition: color 200ms ease-in-out;
+  cursor: pointer;
   &:hover, &:focus-visible {
     color: oklab(from var(--color-gold) calc(l + 0.1) a b)
   }
