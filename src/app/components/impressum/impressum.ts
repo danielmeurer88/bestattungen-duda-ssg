@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { PageService } from '../../shared/page-service';
 
 @Component({
   selector: 'app-impressum',
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './impressum.scss',
 })
 export class Impressum {
+
+  pageService = inject(PageService);
+
+  constructor() {
+    this.pageService.name$.next('Impressum');
+  }
 
 }

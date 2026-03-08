@@ -1,4 +1,5 @@
-<ul>
+<ng-template #listElements>
+
   <li>
     <a routerLink="/start" routerLinkActive="active-link">
       <app-svg-icon type="home"></app-svg-icon>
@@ -20,4 +21,26 @@
     </a>
   </li>
 
+</ng-template>
+
+<ul class="nav-list">
+  <ng-container *ngTemplateOutlet="listElements"></ng-container>
 </ul>
+
+
+<div class="burger-menu">
+
+  <button [attr.id]="'MenuButton'" popovertarget="Menu" class="burger-button">
+    <app-svg-icon type="menu"></app-svg-icon>
+  </button>
+
+  <dialog [attr.id]="'Menu'" popover>
+    <ul class="menu-list">
+      <ng-container *ngTemplateOutlet="listElements"></ng-container>
+    </ul>
+  </dialog>
+
+  <div class="page-name">{{ pageService.name$ | async }}</div>
+
+</div>
+

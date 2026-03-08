@@ -1,10 +1,19 @@
 :host {
 
   background-color: var(--color-brand);
+  display: flex;
+  container-name: page-nav-container;
+  container-type: inline-size;
+  width: 100%;
 
-  ul {
-    display: flex;
+  ul.nav-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1ch;
+
+    @container page-nav-container (width <= 500px) {
+      display: none;
+    }
 
     li a {
 
@@ -40,6 +49,71 @@
       }
 
     }
+  }
+
+  .burger-menu {
+    display: none;
+
+    align-items: center;
+    gap: 1ch;
+    width: 100%;
+
+    @container page-nav-container (width <= 500px) {
+      display: flex;
+    }
+
+    #MenuButton {
+
+      anchor-name: --menu-button;
+
+      width: 2.2rem;
+      height: 2.2rem;
+      place-items: center;
+
+      color: var(--color-text);
+      border: 2px solid currentColor;
+      border-radius: 0.2rem;
+      background-color: var(--color-brand);
+
+      background-color: transparent;
+      transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+
+      &:hover,
+      &:focus-visible {
+        background-color: oklch(from var(--color-brand) calc(l - 0.15) c h / 80%);
+        color: oklch(from var(--color-text) calc(l - 0.15) c h / 80%);
+      }
+
+
+    }
+
+    dialog {
+      position: absolute;
+      left: anchor(--menu-button left);
+      top: anchor(--menu-button bottom);
+
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        li {
+          padding: .6ch 1ch;
+
+          a {
+            display: flex;
+            gap: 1ch;
+            align-items: center;
+          }
+        }
+      }
+
+    }
+
+    .page-name {
+      font-size: 1.4rem;
+      margin-left: auto;
+    }
+
   }
 
 }

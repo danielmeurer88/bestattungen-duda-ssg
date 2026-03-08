@@ -9,6 +9,9 @@
     max-width: var(--page-width);
     margin: 6ch auto;
 
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+
     display: flex;
     flex-direction: column;
     gap: 2ch;
