@@ -157,7 +157,7 @@
       </div>
     </ng-template>
 
-    <div tabindex="0" utilTooltip="x" [utilTooltipTemplate]="phoneTemplate" [utilTooltipSimulatePopup]="true">
+    <div tabindex="0" utilTooltip [utilTooltipData]="phonePopupData">
       Telefon: <span role="button" class="link-alike">06249 - 8450</span>
     </div>
 
@@ -165,14 +165,7 @@
       Fax: 06249 - 8757
     </div>
 
-    <ng-template #mailTemplate>
-      <div style="display: flex; gap: 2ch; margin: 4ch;">
-        <a href="mailto:bestattungen-duda@online.de"><app-svg-icon type="external"></app-svg-icon></a>
-        <button><app-svg-icon type="copy"></app-svg-icon> </button>
-      </div>
-    </ng-template>
-
-    <div tabindex="0" utilTooltip="x" [utilTooltipTemplate]="mailTemplate" [utilTooltipSimulatePopup]="true">
+    <div tabindex="0" utilTooltip [utilTooltipData]="emailPopupData">
       E-Mail: <span role="button" class="link-alike">bestattungen-duda@online.de</span>
     </div>
 

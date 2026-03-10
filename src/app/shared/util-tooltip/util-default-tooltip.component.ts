@@ -10,14 +10,15 @@ export const UTIL_TOOLTIP_COMPONENT_DATA_INJECTION_TOKEN = new InjectionToken<Ut
   styles: [],
   standalone: false
 })
-export class UtilDefaultTooltipComponent<T extends UtilTooltipComponentData = UtilTooltipComponentData> {
-  data = inject(UTIL_TOOLTIP_COMPONENT_DATA_INJECTION_TOKEN);
-  text = this.data?.text || '';
+export class UtilDefaultTooltipComponent<T extends any = any> {
+  _ = inject(UTIL_TOOLTIP_COMPONENT_DATA_INJECTION_TOKEN) as UtilTooltipData<T>;
+  text = this._?.text || '';
+  data = this._.componentData?.data;
 }
 
-export type UtilTooltipComponentType<T extends UtilTooltipComponentData> = new (...args: any[]) => UtilDefaultTooltipComponent<T>;
+export type UtilTooltipComponentType<T extends any = any> = new (...args: any[]) => UtilDefaultTooltipComponent<T>;
 
-export type UtilTooltipData<T extends UtilTooltipComponentData = UtilTooltipComponentData> = {
+export type UtilTooltipData<T extends any = any> = {
   text: string;
   templateRef?: TemplateRef<any>;
   componentData?: {

@@ -74,6 +74,7 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
     if (!defaultStyleEl) {
       const defaultStyle = `
         .util-tooltip {
+          background-color: transparent;
           border: 0px solid transparent;
           padding: 0;
           margin: 0;
@@ -168,6 +169,7 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
     tooltipEl.style.setProperty('position-anchor', anchorName);
 
     tooltipEl.style.setProperty('position-try-fallbacks', '--util-tooltip-bottom-from-anchor, --util-tooltip-top-from-anchor');
+    // tooltipEl.style.setProperty('position-try-fallbacks', 'bottom, center, right, top, left');
 
     tooltipEl.style.setProperty('inset', 'unset');
     tooltipEl.style.setProperty('top', 'anchor(bottom)');
@@ -194,14 +196,11 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
       // create the specialized injector based on the injector of the directive
       const environmentInjector = this.applicationRef.injector;
 
-      const injData = this._data$.value.componentData.data || {} as UtilTooltipComponentData;
-      injData.text = this._data$.value.text || injData.text;
-
       const componentInjector = Injector.create({
         providers: [
           {
             provide: UTIL_TOOLTIP_COMPONENT_DATA_INJECTION_TOKEN,
-            useValue: injData
+            useValue: this._data$.value
           },
         ],
         name: 'tooltip-component-injector',
@@ -215,6 +214,7 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
 
       this.applicationRef.attachView(createdComponentRef.hostView);
       const cmpEl = (createdComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+
       this.renderer2.appendChild(tooltipEl, cmpEl);
     }
 
