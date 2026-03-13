@@ -88,14 +88,32 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
           box-shadow: 1px 1px 4px 1px #333;
         }
 
-        @position-try --util-tooltip-bottom-from-anchor {
+        @position-try --ut-below-right {
           top: anchor(bottom);
+          right: auto;
+          bottom: auto;
           left: anchor(center);
         }
 
-        @position-try --util-tooltip-top-from-anchor {
+        @position-try --ut-below-left {
+          top: anchor(bottom);
+          right: anchor(center);
+          bottom: auto;
+          left: auto;
+        }
+
+        @position-try --ut-above-right {
+          top: auto;
+          right: auto;
           bottom: anchor(top);
           left: anchor(center);
+        }
+
+        @position-try --ut-above-left {
+          top: auto;
+          right: anchor(center);
+          bottom: anchor(top);
+          left: auto;
         }
       `;
       defaultStyleEl = this.documentRef.createElement('style');
@@ -168,8 +186,7 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
     // default anchor for tooltip element
     tooltipEl.style.setProperty('position-anchor', anchorName);
 
-    tooltipEl.style.setProperty('position-try-fallbacks', '--util-tooltip-bottom-from-anchor, --util-tooltip-top-from-anchor');
-    // tooltipEl.style.setProperty('position-try-fallbacks', 'bottom, center, right, top, left');
+    tooltipEl.style.setProperty('position-try-fallbacks', '--ut-below-right, --ut-above-right, --ut-below-left, --ut-above-left');
 
     tooltipEl.style.setProperty('inset', 'unset');
     tooltipEl.style.setProperty('top', 'anchor(bottom)');

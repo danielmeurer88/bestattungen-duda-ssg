@@ -48,6 +48,20 @@ export class Start {
     }
   };
 
+  addressPopupData: UtilTooltipData<NoUserExperienceBreakPopupData> = {
+    text: 'x',
+    simulatePopup: true,
+    componentData: {
+      cmp: NoUserExperienceBreakPopupComponent,
+      data: {
+        context: 'Adresse',
+        copyText: 'Donaustraße 9\n67583 Guntersblum',
+        href: 'https://www.openstreetmap.org/search?query=bestattungen+duda&zoom=14#map=19/49.796435/8.343934&layers=N',
+        extern: true
+      }
+    }
+  };
+
   constructor() {
     this.pageService.name$.next('Startseite');
   }

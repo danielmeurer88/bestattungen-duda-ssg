@@ -36,7 +36,7 @@
 
   <div class="address-container">
     <app-svg-icon type="map"></app-svg-icon>
-    <address>
+    <address tabindex="0" class="link-alike" utilTooltip [utilTooltipData]="addressPopupData">
       Donaustraße 9
       <br>
       67583 Guntersblum
@@ -46,9 +46,8 @@
 
   <div class="phone-number-container">
     <div class="row-1">Tag und Nacht telefonisch erreichbar</div>
-    <div class="row-2">
-      <app-svg-icon type="phone"></app-svg-icon>
-      <a href="tel:+4962498450">06249 - 8450</a>
+    <div tabindex="0" class="row-2" utilTooltip [utilTooltipData]="phonePopupData">
+      <app-svg-icon type="phone"></app-svg-icon><span role="button" class="link-alike">06249 - 8450</span>
     </div>
   </div>
 
@@ -134,7 +133,7 @@
 
   <h2>So finden Sie uns:</h2>
 
-  <address>
+  <address tabindex="0" class="link-alike" utilTooltip [utilTooltipData]="addressPopupData">
     Andrea Duda
     <br>
     Donaustraße 9
@@ -149,13 +148,6 @@
   </div>
 
   <div class="contact-data">
-
-    <ng-template #phoneTemplate>
-      <div style="display: flex; gap: 2ch; margin: 4ch;">
-        <a href="tel:+4962498450"><app-svg-icon type="external"></app-svg-icon> </a>
-        <button><app-svg-icon type="copy"></app-svg-icon> </button>
-      </div>
-    </ng-template>
 
     <div tabindex="0" utilTooltip [utilTooltipData]="phonePopupData">
       Telefon: <span role="button" class="link-alike">06249 - 8450</span>

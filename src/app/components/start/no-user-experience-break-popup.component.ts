@@ -6,6 +6,7 @@ export type NoUserExperienceBreakPopupData = {
   context: string;
   copyText: string;
   href: string;
+  extern?: boolean;
 };
 
 
@@ -23,7 +24,7 @@ export type NoUserExperienceBreakPopupData = {
         </button>
       </div>
       <div class="popup-line">
-        <span>Extern ausführen</span> <a [href]="data?.href"><app-svg-icon type="external"></app-svg-icon></a>
+        <span>Extern ausführen</span> <a [href]="data?.href" [target]="data?.extern ? '_blank' : '_self'"><app-svg-icon type="external"></app-svg-icon></a>
       </div>
     </div>
   `,
