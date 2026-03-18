@@ -161,6 +161,11 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
       this.tooltipEl = null!;
     }
 
+    if (this._data$.value) {
+      // default values
+      this._data$.value.triggerCauses ||= ['focus', 'mouseOver'];
+    }
+
     anchorEl.removeEventListener('mouseenter', this.mouseenterEventListener);
     anchorEl.removeEventListener('mouseleave', this.mouseleaveEventListener);
     anchorEl.removeEventListener('click', this.clickEventListener);
