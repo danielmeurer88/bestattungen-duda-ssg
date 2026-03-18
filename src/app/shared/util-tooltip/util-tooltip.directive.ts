@@ -1,6 +1,6 @@
-import { afterNextRender, ApplicationRef, createComponent, Directive, DOCUMENT, ElementRef, EmbeddedViewRef, inject, Injector, Input, OnDestroy, OnInit, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ApplicationRef, createComponent, Directive, DOCUMENT, ElementRef, EmbeddedViewRef, inject, Injector, Input, OnDestroy, OnInit, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, delay, filter, Subscription } from 'rxjs';
-import { UTIL_TOOLTIP_COMPONENT_DATA_INJECTION_TOKEN, UtilTooltipComponentData, UtilTooltipData } from './util-default-tooltip.component';
+import { UTIL_TOOLTIP_COMPONENT_DATA_INJECTION_TOKEN, UtilTooltipCause, UtilTooltipData } from './util-default-tooltip.component';
 import { getPathToBody } from '../functions';
 
 
@@ -30,6 +30,7 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
   });
 
   private dataSub: Subscription = null!;
+  private triggerSub: Subscription = null!;
 
   @Input('utilTooltip')
   set tooltipText(value: string) {
@@ -56,9 +57,9 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
   }
 
   @Input()
-  set utilTooltipSimulatePopup(value: boolean) {
+  set utilTooltipTriggerCauses(value: UtilTooltipData['triggerCauses']) {
     const _data = this._data$.value;
-    _data.simulatePopup = (value || typeof value === 'string' && value === '');
+    _data.triggerCauses = value || [];
     this._data$.next(_data);
   }
 
@@ -136,8 +137,13 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dataSub.unsubscribe();
+    this.dataSub?.unsubscribe();
+    this.triggerSub?.unsubscribe();
 
+  }
+
+  private isCause(cause: UtilTooltipCause) {
+    return this._data$.value?.triggerCauses?.includes(cause);
   }
 
   private createPopoverElement() {
@@ -160,18 +166,18 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
     anchorEl.removeEventListener('click', this.clickEventListener);
     anchorEl.removeEventListener('focus', this.focusEventListener);
 
-    if (this._data$.value.simulatePopup) {
-
+    if (this.isCause('click')) {
       anchorEl.addEventListener('click', this.clickEventListener);
-      anchorEl.addEventListener('focus', this.focusEventListener);
-
-    } else {
-
-      anchorEl.addEventListener('mouseenter', this.mouseenterEventListener);
-      anchorEl.addEventListener('mouseleave', this.mouseleaveEventListener);
-
     }
 
+    if (this.isCause('focus')) {
+      anchorEl.addEventListener('focus', this.focusEventListener);
+    }
+
+    if (this.isCause('mouseOver')) {
+      anchorEl.addEventListener('mouseenter', this.mouseenterEventListener);
+      anchorEl.addEventListener('mouseleave', this.mouseleaveEventListener);
+    }
 
     // host css anchor-name: ;
     anchorEl.style.setProperty('anchor-name', anchorName);
@@ -250,6 +256,19 @@ export class UtilTooltipDirective implements OnInit, OnDestroy {
     this.renderer2.setAttribute(anchorEl, 'popovertarget', this.uid);
 
     this.tooltipEl = tooltipEl;
+
+    this.triggerSub?.unsubscribe();
+
+    if (this.isCause('trigger') && this._data$.value.showAndHideTrigger$) {
+      this.triggerSub = this._data$.value.showAndHideTrigger$.subscribe(showIt => {
+        if (showIt) {
+          this.tooltipEl?.showPopover();
+        } else {
+          this.tooltipEl?.hidePopover();
+        }
+
+      });
+    }
   }
 
   private mouseenterEventListener = (e: MouseEvent) => {

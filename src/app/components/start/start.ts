@@ -24,7 +24,7 @@ export class Start {
 
   phonePopupData: UtilTooltipData<NoUserExperienceBreakPopupData> = {
     text: 'x',
-    simulatePopup: true,
+    triggerCauses: ['click', 'focus'],
     componentData: {
       cmp: NoUserExperienceBreakPopupComponent,
       data: {
@@ -37,7 +37,7 @@ export class Start {
 
   emailPopupData: UtilTooltipData<NoUserExperienceBreakPopupData> = {
     text: 'x',
-    simulatePopup: true,
+    triggerCauses: ['click', 'focus'],
     componentData: {
       cmp: NoUserExperienceBreakPopupComponent,
       data: {
@@ -50,7 +50,7 @@ export class Start {
 
   addressPopupData: UtilTooltipData<NoUserExperienceBreakPopupData> = {
     text: 'x',
-    simulatePopup: true,
+    triggerCauses: ['click', 'focus'],
     componentData: {
       cmp: NoUserExperienceBreakPopupComponent,
       data: {

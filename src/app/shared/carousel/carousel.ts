@@ -20,7 +20,6 @@ export class Carousel {
   currentIndex$ = new BehaviorSubject<number>(0);
 
   prevSlide(slidesEl: HTMLDivElement) {
-    console.log('prevSlide', slidesEl);
 
     let scrollTarget = slidesEl.scrollWidth;
     const slideLength = slidesEl.clientWidth;
@@ -38,7 +37,6 @@ export class Carousel {
   }
 
   nextSlide(slidesEl: HTMLDivElement) {
-    console.log('nextSlide', slidesEl);
 
     let scrollTarget = 0;
     const slideLength = slidesEl.clientWidth;

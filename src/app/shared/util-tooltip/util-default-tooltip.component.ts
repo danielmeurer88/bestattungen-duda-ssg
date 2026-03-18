@@ -1,4 +1,5 @@
 import { InjectionToken, Component, inject, TemplateRef } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export type UtilTooltipComponentData = {text: string;};
 
@@ -18,6 +19,8 @@ export class UtilDefaultTooltipComponent<T extends any = any> {
 
 export type UtilTooltipComponentType<T extends any = any> = new (...args: any[]) => UtilDefaultTooltipComponent<T>;
 
+export type UtilTooltipCause = 'mouseOver' | 'focus' | 'click' | 'trigger' ;
+
 export type UtilTooltipData<T extends any = any> = {
   text: string;
   templateRef?: TemplateRef<any>;
@@ -25,5 +28,10 @@ export type UtilTooltipData<T extends any = any> = {
     cmp: UtilTooltipComponentType<T>;
     data?: T;
   };
-  simulatePopup?: boolean;
+  triggerCauses?: UtilTooltipCause[];
+  /**
+   * opens tooltip if next = true, hides it if next = false
+   * note: do not forget to add trigger to trigger causes
+   */
+  showAndHideTrigger$?: Observable<boolean>;
 };
