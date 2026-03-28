@@ -47,16 +47,19 @@
 
       .carousel-slide {
 
-        width: 100cqw;
-        min-width:  100cqw;
-        max-width:  100cqw;
+        --tmp: 100cqw;
+        --w: var(--tmp);
+
+        width: var(--w);
+        min-width:  var(--w);
+        max-width:  var(--w);
 
         scroll-snap-align: start;
 
         img {
-          width: 100cqw;
-          min-width:  100cqw;
-          max-width:  100cqw;
+          width: var(--w);
+          min-width: var(--w);
+          max-width: var(--w);
 
           object-fit: contain;
 
@@ -110,6 +113,10 @@
 
       &.next-slide-button {
         right: 5px;
+      }
+
+      @media (pointer: coarse) {
+        display: none;
       }
 
     }

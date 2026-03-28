@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { UtilSwipeDirective } from '../swipe/swipe.directive';
 
 @Component({
   selector: 'app-carousel',
   imports: [
-    CommonModule
+    CommonModule,
+    UtilSwipeDirective
   ],
   templateUrl: './carousel.html',
   styleUrl: './carousel.scss',
@@ -42,7 +44,7 @@ export class Carousel implements AfterViewInit, OnDestroy {
   jumpTo(num: number) {
     num = this.updateCurrentIndex(num);
     const slideEl = this.getSlideElement(num);
-    slideEl.focus({});
+    slideEl.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
   }
 
   private updateCurrentIndex(wantedIndex: number = 0): number {

@@ -1,4 +1,4 @@
-<div class="carousel-container">
+<div class="carousel-container" (swipeRight)="prevSlide()" (swipeLeft)="nextSlide()">
 
   <div class="carousel-slides {{ manualScrolling ? 'manual-scrolling' : '' }}">
 
