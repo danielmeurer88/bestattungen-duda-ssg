@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -10,48 +10,68 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './carousel.html',
   styleUrl: './carousel.scss',
 })
-export class Carousel {
+export class Carousel implements AfterViewInit, OnDestroy {
+
+  private elementRef = inject(ElementRef);
+
+  /**
+   * manualScrolling not yet implemented - work with IntersectionObserver to update index
+   * (manualScrolling = javascriptless / html scrolling like using scroll wheel or the scroll bar)
+   */
+  protected manualScrolling = false;
 
   @Input() images: Array<{
     src: string;
     alt?: string;
   }> = [];
 
-  currentIndex$ = new BehaviorSubject<number>(0);
+  index$ = new BehaviorSubject<number>(0);
 
-  prevSlide(slidesEl: HTMLDivElement) {
+  ngAfterViewInit(): void {}
 
-    let scrollTarget = slidesEl.scrollWidth;
-    const slideLength = slidesEl.clientWidth;
+  ngOnDestroy(): void {}
 
-    // is scroll End reached?
-    // true if current scroll indicator's position is 0
-    const scrollStartReached = slidesEl.scrollLeft - 1 <= 0;
-
-    if (!scrollStartReached) {
-      // target
-      scrollTarget = slidesEl.scrollLeft - slideLength;
-    }
-
-    slidesEl.scrollTo({behavior: 'smooth', left: scrollTarget});
+  prevSlide() {
+    this.jumpTo(this.index$.value - 1);
   }
 
-  nextSlide(slidesEl: HTMLDivElement) {
+  nextSlide() {
+    this.jumpTo(this.index$.value + 1);
+  }
 
-    let scrollTarget = 0;
-    const slideLength = slidesEl.clientWidth;
+  jumpTo(num: number) {
+    num = this.updateCurrentIndex(num);
+    const slideEl = this.getSlideElement(num);
+    slideEl.focus({});
+  }
 
-    // is scroll End reached?
-    // true if current scroll indicator's position + the length of one slide is equal or taller then the whole scroll width
-    const scrollEndReached = Math.ceil(slidesEl.scrollLeft + slideLength + 1) >= Math.ceil(slidesEl.scrollWidth);
+  private updateCurrentIndex(wantedIndex: number = 0): number {
 
-    if (!scrollEndReached) {
-      // target
-      scrollTarget = slidesEl.scrollLeft + slideLength;
+    const maxi = this.images.length - 1;
+
+    if (wantedIndex > maxi) {
+      wantedIndex = 0;
     }
 
-    slidesEl.scrollTo({behavior: 'smooth', left: scrollTarget});
+    if (wantedIndex < 0) {
+      wantedIndex = maxi;
+    }
 
+    this.index$.next(wantedIndex);
+    return wantedIndex;
+
+  }
+
+  private getSlideElement(i: number) {
+    return this.getAllSlides()[i];
+  }
+
+  private getAllSlides() {
+    return Array.from((this.elementRef.nativeElement as HTMLElement).querySelectorAll('.carousel-slides .carousel-slide')) as HTMLElement[];
+  }
+
+  private getCarouselSlideElement() {
+    return (this.elementRef.nativeElement as HTMLElement).querySelector('.carousel-slides') as HTMLElement;
   }
 
 }

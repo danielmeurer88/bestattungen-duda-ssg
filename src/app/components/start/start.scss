@@ -240,6 +240,12 @@
     background-image: url('../../../../public/img/bck/memories.jpg');
     padding-top: 20ch;
     padding-bottom: 20ch;
+    gap: 4ch;
+
+    h2 {
+      font-size: calc(0.55 * var(--logo-height));
+    }
+
   }
 
   .contact {

@@ -7,9 +7,9 @@
   container-name: --app-carousel;
   container-type: inline-size;
   display: flex;
+  flex-direction: column;
   width: 100%;
 
-  scroll-behavior: smooth;
   scrollbar-color: rgb(105, 105, 105) rgb(37, 0, 0);
   scrollbar-width: thin;
 
@@ -31,16 +31,19 @@
       --that-max-height: 320px;
     }
 
-    width: 100%;
+    width: 100cqw;
     position: relative;
 
     .carousel-slides {
       display: flex;;
-      width: 100%;
+      width: inherit;
       height: 100%;
-      overflow-x: auto;
+      overflow-x: hidden;
+
+      pointer-events: none;
 
       scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
 
       .carousel-slide {
 
@@ -64,6 +67,11 @@
         display: flex;
         justify-content: center;
 
+      }
+
+      &.manual-scrolling {
+        pointer-events: unset;
+        overflow-x: auto;
       }
 
     }
@@ -102,6 +110,40 @@
 
       &.next-slide-button {
         right: 5px;
+      }
+
+    }
+
+  }
+
+  .quick-jump-container {
+
+    width: 100cqi;
+
+    padding: 1.5ch;
+    display: flex;
+    gap: 1.5ch;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .quick-jump-button {
+
+      width: 2rem;
+      height: 2rem;
+      border: 2px solid white;
+      border-radius: 50%;
+      background-color: rgb(54, 54, 54);
+      cursor: pointer;
+
+      &:not(.active):hover, &:not(.actives):focus-visible {
+        background-color: rgb(92, 92, 92);
+        border-color: rgb(204, 204, 204);
+      }
+
+      &.active {
+        background-color: rgb(31, 31, 31);
+        border-color: var(--color-gold);
+        cursor: default;
       }
 
     }

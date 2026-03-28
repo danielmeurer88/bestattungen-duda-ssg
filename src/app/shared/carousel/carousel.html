@@ -1,10 +1,10 @@
 <div class="carousel-container">
 
-  <div class="carousel-slides" #carouselSlides>
+  <div class="carousel-slides {{ manualScrolling ? 'manual-scrolling' : '' }}">
 
     @for (image of images; track $index; let i = $index) {
 
-      <div class="carousel-slide">
+      <div tabindex="-1" class="carousel-slide">
         <img
           [src]="image.src"
           [alt]="image.alt"
@@ -18,12 +18,24 @@
 
   <button
     class="slide-button prev-slide-button"
-    (click)="prevSlide(carouselSlides)"
+    aria-label="Springe zum vorherigen Bild"
+    (click)="prevSlide()"
   >&#10094;</button>
 
   <button
     class="slide-button next-slide-button"
-    (click)="nextSlide(carouselSlides)"
+    aria-label="Springe zum nächsten Bild"
+    (click)="nextSlide()"
   >&#10095;</button>
 
+</div>
+
+<div class="quick-jump-container">
+  @for (image of images; track $index; let i = $index) {
+    <button
+      [attr.aria-label]="'Springe zu Bild Nummer ' + (i + 1)"
+      class="quick-jump-button {{ (index$ | async) === i ? 'active' : '' }}"
+      (click)="jumpTo(i)">
+    </button>
+  }
 </div>
